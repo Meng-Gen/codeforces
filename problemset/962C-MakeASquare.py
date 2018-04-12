@@ -14,20 +14,18 @@ def is_subsequence(x, y):
     it = iter(y)
     return all(any(c == ch for c in it) for ch in x)
 
-def main():
+def get(n):
     literal_map = get_square_literal_map()
-
-    n = int(sys.stdin.readline())
-    n_literal = str(n)
-    n_len = len(n_literal)
-
+    n_len = len(n)
     for i in range(n_len, 0, -1):
         for j in literal_map[i]:
-            if is_subsequence(j, n_literal):
-                found = True
-                print(n_len - i)
-                return
-    print(-1)
+            if is_subsequence(j, n):
+                return n_len - i
+    return -1
+
+def main():
+    n = sys.stdin.readline().strip()
+    print(get(n))
 
 if __name__ == '__main__':
     sys.exit(main())
